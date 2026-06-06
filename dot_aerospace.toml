@@ -1,0 +1,116 @@
+# ~/.aerospace.toml - Modified for a Regolith i3-like experience
+
+after-startup-command = []
+start-at-login = true
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+automatically-unhide-macos-hidden-apps = true
+
+[key-mapping]
+preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 2
+inner.vertical = 2
+outer.left = 2
+outer.bottom = 2
+outer.top = 2
+outer.right = 2
+
+# --- BINDINGS ---
+
+[mode.main.binding]
+
+    # --- Application Launchers ---
+    alt-b = 'exec-and-forget open -n -a "Google Chrome"'
+
+    # --- Layouts ---
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
+
+    # --- Floating / Tiling (FIXED) ---
+    alt-f = 'layout floating'
+    alt-shift-f = 'layout tiling'
+
+    # --- Window Focus & Movement ---
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    # --- Window Resizing ---
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    # --- Workspace Navigation ---
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-0 = 'workspace 10'
+
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8'
+    alt-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-0 = 'move-node-to-workspace 10'
+
+    # --- Workspace Utilities ---
+    alt-backtick = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    # --- Modes ---
+    alt-shift-semicolon = 'mode service'
+
+
+# --- Disable Default Letter Workspace Bindings ---
+alt-a = []
+alt-c = []
+alt-d = []
+alt-e = []
+alt-g = []
+alt-i = []
+alt-m = []
+alt-n = []
+alt-o = []
+alt-p = []
+alt-q = []
+alt-r = []
+alt-s = []
+alt-t = []
+alt-u = []
+alt-v = []
+alt-w = []
+alt-x = []
+alt-y = []
+alt-z = []
+
+[workspace-to-monitor-force-assignment]
+10 = 'secondary'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['reload-config', 'mode main']
+f = ['flatten-workspace-tree', 'mode main']
+shift-f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
