@@ -16,4 +16,4 @@ The local Git hooks in `.githooks/` apply source changes automatically after com
 
 ## Notes
 
-`.zshrc` is not managed yet because it contains plaintext API tokens. Move those tokens into a private secrets layer before adding it.
+`.zshrc` is managed. Keep machine-local tokens and private values out of it unless they are moved into an encrypted chezmoi/secrets flow.

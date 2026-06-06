@@ -1,0 +1,332 @@
+
+# ============================================================
+# ZSH CONFIG
+# ============================================================
+
+# ------------------------------------------------------------
+# Paths: Homebrew first
+# ------------------------------------------------------------
+export PATH="/opt/homebrew/bin:$PATH"
+
+# ------------------------------------------------------------
+# Secrets
+# Keep tokens out of this file.
+# Put them in: ~/.config/secrets/env
+# ------------------------------------------------------------
+[[ -f "$HOME/.config/secrets/env" ]] && source "$HOME/.config/secrets/env"
+
+# ------------------------------------------------------------
+# Zap plugin manager
+# ------------------------------------------------------------
+ZAP_PATH="${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+
+if [[ -f "$ZAP_PATH" ]]; then
+  source "$ZAP_PATH"
+
+  plug "zap-zsh/zap-prompt"
+  plug "zap-zsh/supercharge"
+  plug "zsh-users/zsh-autosuggestions"
+  plug "zsh-users/zsh-syntax-highlighting"
+fi
+
+# ------------------------------------------------------------
+# Vi mode
+# ------------------------------------------------------------
+set -o vi
+export KEYTIMEOUT=5
+
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+
+# Cursor shape:
+# block in normal mode, beam in insert mode
+function zle-keymap-select {
+  if [[ "$KEYMAP" == vicmd ]]; then
+    echo -ne '\e[1 q'
+  else
+    echo -ne '\e[5 q'
+  fi
+}
+
+zle -N zle-keymap-select
+echo -ne '\e[5 q'
+
+# ------------------------------------------------------------
+# Completion system
+# ------------------------------------------------------------
+autoload -Uz compinit
+compinit -C
+
+# ------------------------------------------------------------
+# Carapace completions
+# ------------------------------------------------------------
+if command -v carapace >/dev/null 2>&1; then
+  export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense'
+  zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+  eval "$(carapace _carapace zsh)"
+fi
+
+# ------------------------------------------------------------
+# Editor
+# ------------------------------------------------------------
+export EDITOR="nvim"
+export LAUNCH_EDITOR="code"
+
+# ------------------------------------------------------------
+# Android / Java
+# ------------------------------------------------------------
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+
+export PATH="$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$PATH"
+
+# ------------------------------------------------------------
+# Bun
+# ------------------------------------------------------------
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+[[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun"
+
+# ------------------------------------------------------------
+# pnpm
+# ------------------------------------------------------------
+export PNPM_HOME="$HOME/.local/share/pnpm"
+
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
+# ------------------------------------------------------------
+# Rust / Cargo
+# ------------------------------------------------------------
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# ------------------------------------------------------------
+# Node via fnm
+# ------------------------------------------------------------
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd)"
+fi
+
+# ------------------------------------------------------------
+# Zoxide
+# ------------------------------------------------------------
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+# ------------------------------------------------------------
+# tmuxifier
+# ------------------------------------------------------------
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+# eval "$(tmuxifier init -)"
+
+# ------------------------------------------------------------
+# Antigravity
+# ------------------------------------------------------------
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# ------------------------------------------------------------
+# Agent / tool env
+# ------------------------------------------------------------
+export ENABLE_TOOL_SEARCH="auto:5"
+export ENABLE_LSP_TOOL=1
+export AGENTIFY_MEMPALACE_CMD="$HOME/.local/bin/mempalace"
+
+# ------------------------------------------------------------
+# Worktree tool shell integration
+# ------------------------------------------------------------
+if command -v wt >/dev/null 2>&1; then
+  eval "$(command wt config shell init zsh)"
+fi
+
+# ============================================================
+# ALIASES
+# ============================================================
+
+# ------------------------------------------------------------
+# System
+# ------------------------------------------------------------
+alias std="sudo shutdown now"
+alias rb="sudo reboot now"
+alias flushdns="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+
+# ------------------------------------------------------------
+# Navigation
+# ------------------------------------------------------------
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# ------------------------------------------------------------
+# Listing / files
+# ------------------------------------------------------------
+alias ls="eza --icons --git"
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias ltree="eza --tree --level=2 --icons --git"
+alias la="tree"
+alias cat="bat"
+
+# ------------------------------------------------------------
+# Git
+# ------------------------------------------------------------
+alias gg="lazygit"
+alias gp="git pull"
+alias gpd="git pull origin development"
+alias gcb="git checkout"
+alias gnb="git checkout -b"
+
+# ------------------------------------------------------------
+# Git worktree
+# ------------------------------------------------------------
+alias gwa="git worktree add"
+alias gwr="git worktree remove"
+alias gwl="git worktree list"
+alias nwt="wt switch --create"
+alias dwt="wt remove -D"
+
+# ------------------------------------------------------------
+# Docker
+# ------------------------------------------------------------
+alias dcb="docker-compose build"
+alias dcu="docker-compose up"
+alias dcl="docker-compose logs"
+
+# ------------------------------------------------------------
+# Node / React Native
+# ------------------------------------------------------------
+alias npm="pnpm"
+alias rnpm="command npm"
+alias nr="npm run"
+
+alias re="npm run android && npm run start"
+alias rmb="npm run android:build-apk"
+alias rnt="detox test -c android.emu.debug"
+
+# ------------------------------------------------------------
+# tmux
+# ------------------------------------------------------------
+alias ks="tmux kill-session -t"
+alias trn="tmux rename-session"
+alias trw="tmux rename-window"
+
+trs() {
+  tmux rename-session -t "$(tmux display-message -p '#S')" "$1"
+}
+
+# ------------------------------------------------------------
+# AI tools
+# ------------------------------------------------------------
+alias cx="codex --dangerously-bypass-approvals-and-sandbox"
+alias cl="claude --allow-dangerously-skip-permissions"
+
+# ------------------------------------------------------------
+# HTTP
+# ------------------------------------------------------------
+alias http="xh"
+
+# ============================================================
+# TMUX AUTO START
+# ============================================================
+
+if [[ "$TERM_PROGRAM" == "ghostty" ]] && command -v tmux >/dev/null 2>&1; then
+  if [[ -z "$TMUX" ]]; then
+    tmux attach -t main || tmux new -s main
+  fi
+fi
+
+# ============================================================
+# TMUX + WORKTREE HELPERS
+# ============================================================
+
+_tmux_session_name_from_pwd() {
+  local root common repo worktree subdir name
+
+  if root=$(git rev-parse --show-toplevel 2>/dev/null); then
+    common=$(git rev-parse --git-common-dir 2>/dev/null)
+    repo=$(basename "$common")
+    worktree=$(basename "$root")
+    subdir="${PWD#$root}"
+
+    if [[ "$worktree" == "$repo" ]]; then
+      name="$repo"
+    else
+      name="$repo-$worktree"
+    fi
+
+    if [[ -n "$subdir" && "$subdir" != "$PWD" ]]; then
+      subdir=$(printf '%s' "$subdir" | sed 's|^/||; s|/|-|g')
+      [[ -n "$subdir" ]] && name="$name-$subdir"
+    fi
+  else
+    name="$(basename "$(dirname "$PWD")")-$(basename "$PWD")"
+  fi
+
+  printf '%s' "$name" \
+    | sed 's|[[:space:]/:]|-|g; s|-\\{2,\\}|-|g; s|^-||; s|-$||'
+}
+
+_wt_tmux_rename() {
+  [[ -z "$TMUX" ]] && return
+
+  local cmd
+  cmd="$(tmux display-message -p '#{pane_current_command}' 2>/dev/null)"
+
+  if [[ -n "$cmd" ]]; then
+    tmux rename-window "$cmd" 2>/dev/null
+  fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _wt_tmux_rename
+add-zsh-hook precmd _wt_tmux_rename
+
+# ------------------------------------------------------------
+# Worktree + tmux helper
+# ------------------------------------------------------------
+tw() {
+  local name is_git
+  name="$(basename "$PWD")"
+
+  if git rev-parse --show-toplevel >/dev/null 2>&1; then
+    is_git=1
+    name="$(basename "$(git rev-parse --show-toplevel)")"
+  else
+    is_git=0
+  fi
+
+  if tmux has-session -t "$name" 2>/dev/null; then
+    tmux attach -t "$name"
+    return
+  fi
+
+  tmux new-session -d -s "$name"
+
+  if [[ "$is_git" -eq 1 ]]; then
+    tmux split-window -h -t "$name":1
+    tmux select-layout -t "$name":1 even-horizontal
+  fi
+
+  tmux attach -t "$name"
+}
+
+wtm() {
+  if ! command -v wt >/dev/null 2>&1; then
+    echo "wt command not found"
+    return 1
+  fi
+
+  command wt "$@" || return
+  tw
+}
+
+alias w="wtm"
+
