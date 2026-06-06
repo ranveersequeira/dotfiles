@@ -1,0 +1,14 @@
+[user]
+	name = Ranveer Kumar
+	email = ranveer.kumar@travenues.com
+[color]
+	ui = true
+[credential]
+	helper = store
+[core]
+	editor = nvim
+	pager = diff-so-fancy | less --tabs=4 -RF
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[pager]
+	diff = diffnav

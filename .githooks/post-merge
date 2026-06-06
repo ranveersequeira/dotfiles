@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+
+chezmoi apply --source "$HOME/dotfiles"

@@ -1,0 +1,47 @@
+# =========================
+# FONT
+# =========================
+font-family = JetBrainsMono Nerd Font
+font-size = 16
+font-feature = liga
+
+# =========================
+# THEME
+# =========================
+theme = Gruvbox Dark Hard
+
+# =========================
+# WINDOW (Aerospace)
+# =========================
+window-padding-x = 12
+window-padding-y = 12
+window-decoration = false
+background-opacity = 1
+background-blur-radius = 0
+
+# =========================
+# CURSOR
+# =========================
+cursor-style = block
+cursor-style-blink = false
+
+# =========================
+# SCROLLBACK
+# =========================
+scrollback-limit = 20000
+confirm-close-surface = false
+
+# =========================
+# KEYBINDS
+# =========================
+keybind = alt+enter=new_window
+keybind = alt+shift+enter=new_tab
+keybind = cmd+c=copy_to_clipboard:mixed
+keybind = cmd+v=paste_from_clipboard
+keybind = cmd+k=clear_screen
+
+# =========================
+# ENV
+# =========================
+env = TERM=xterm-256color
+env = COLORTERM=truecolor
