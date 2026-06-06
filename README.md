@@ -32,6 +32,8 @@ Keep those values machine-local or add them through a private/secrets flow.
 - [fnm](https://github.com/Schniz/fnm), [pnpm](https://pnpm.io/), and
   [Bun](https://bun.sh/docs) cover JavaScript runtime/package workflows.
 - [zoxide](https://github.com/ajeetdsouza/zoxide) improves directory jumping.
+- [Television](https://github.com/alexpasmantier/television) provides terminal
+  fuzzy finding, path completion, and shell history search.
 - [eza](https://eza.rocks/) and [bat](https://github.com/sharkdp/bat) replace
   common listing and file preview commands with richer defaults.
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/guide) gives macOS an
