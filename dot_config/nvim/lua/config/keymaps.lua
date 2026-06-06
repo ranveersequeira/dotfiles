@@ -1,13 +1,13 @@
 local map = vim.keymap.set
 
 local function toggle_line_comment()
-  require("Comment.api").toggle.linewise.current()
+  local keys = vim.api.nvim_replace_termcodes("gcc", true, false, true)
+  vim.api.nvim_feedkeys(keys, "m", false)
 end
 
 local function toggle_visual_comment()
-  local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-  vim.api.nvim_feedkeys(esc, "nx", false)
-  require("Comment.api").toggle.linewise(vim.fn.visualmode())
+  local keys = vim.api.nvim_replace_termcodes("gc", true, false, true)
+  vim.api.nvim_feedkeys(keys, "m", false)
 end
 
 map("n", "<leader>/", toggle_line_comment, { desc = "Toggle Comment" })

@@ -84,11 +84,7 @@ return {
 
   -- 2. PLUGIN CONFIGURATIONS & ADDITIONS
 
-  {
-    "numToStr/Comment.nvim",
-    opts = {}, -- or your custom config
-    lazy = false,
-  },
+  { "numToStr/Comment.nvim", enabled = false },
 
   -- Add your custom plugins from your LunarVim config
   {
