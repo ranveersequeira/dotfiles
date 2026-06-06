@@ -32,5 +32,7 @@ end, { desc = "Previous Warning" })
 
 map({ "n", "x" }, "<M-j>", "10j", { desc = "Move Down 10 Lines" })
 map({ "n", "x" }, "<M-k>", "10k", { desc = "Move Up 10 Lines" })
+map({ "n", "x" }, "<leader>j", "10j", { desc = "Move Down 10 Lines" })
+map({ "n", "x" }, "<leader>k", "10k", { desc = "Move Up 10 Lines" })
 map("n", "<M-d>", "<C-d>zz", { desc = "Page Down Centered" })
 map("n", "<M-u>", "<C-u>zz", { desc = "Page Up Centered" })
