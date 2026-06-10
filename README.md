@@ -16,6 +16,7 @@ Keep those values machine-local or add them through a private/secrets flow.
 | `dot_wezterm.lua` | `~/.wezterm.lua` | WezTerm terminal theme, font, tmux auto-session startup, tab/pane bindings, and link handling. | [WezTerm](https://wezfurlong.org/wezterm/config/files.html) |
 | `dot_config/ghostty/config` | `~/.config/ghostty/config` | Ghostty terminal font, Gruvbox theme, macOS window behavior, keybinds, and terminal env. | [Ghostty](https://ghostty.org/docs/config) |
 | `dot_config/nvim/` | `~/.config/nvim/` | Neovim setup based on LazyVim, including plugin lockfiles and editor configuration. | [Neovim](https://neovim.io/doc/), [LazyVim](https://www.lazyvim.org/) |
+| `dot_config/opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` | OpenCode provider/model configuration, currently restricted to NVIDIA through `NVIDIA_API_KEY`. | [OpenCode config](https://opencode.ai/docs/config/), [OpenCode providers](https://opencode.ai/docs/providers/) |
 | `dot_aerospace.toml` | `~/.aerospace.toml` | AeroSpace tiling window manager layout, workspace, monitor, and movement bindings. | [AeroSpace](https://nikitabobko.github.io/AeroSpace/guide) |
 | `dot_config/tmux/scripts/` | `~/.config/tmux/scripts/` | Small tmux helper scripts, including calendar/status integration. | [tmux status line](https://man7.org/linux/man-pages/man1/tmux.1.html#STATUS_LINE) |
 | `.chezmoi.toml.tmpl` | chezmoi config template | Keeps chezmoi pointed at this source directory. | [chezmoi config](https://www.chezmoi.io/reference/configuration-file/) |
@@ -38,6 +39,8 @@ Keep those values machine-local or add them through a private/secrets flow.
   common listing and file preview commands with richer defaults.
 - [AeroSpace](https://nikitabobko.github.io/AeroSpace/guide) gives macOS an
   i3-like tiling workflow.
+- [OpenCode](https://opencode.ai/docs/) keeps CLI agent provider and model
+  defaults in versioned config while loading the API key from the environment.
 
 ## Common commands
 
