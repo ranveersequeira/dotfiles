@@ -7,6 +7,26 @@ files that should be reproducible across machines.
 Git identity and global Git configuration are intentionally not managed here.
 Keep those values machine-local or add them through a private/secrets flow.
 
+## One-command setup
+
+On a new macOS machine, run:
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ranveersequeira/dotfiles/main/scripts/bootstrap.sh)"
+```
+
+The bootstrap script installs Homebrew if needed, clones or updates this repo at
+`~/dotfiles`, installs the packages in `Brewfile`, installs Zap/Bun/TPM support
+referenced by the shell and tmux config, initializes chezmoi, applies the
+dotfiles, enables this repo's Git hooks, and attempts a first Neovim plugin
+sync.
+
+If the repo should live somewhere else, override the location:
+
+```sh
+DOTFILES_DIR="$HOME/src/dotfiles" /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ranveersequeira/dotfiles/main/scripts/bootstrap.sh)"
+```
+
 ## What is managed
 
 | Source file | Target | Why it is here | Docs |
@@ -22,6 +42,98 @@ Keep those values machine-local or add them through a private/secrets flow.
 | `.chezmoi.toml.tmpl` | chezmoi config template | Keeps chezmoi pointed at this source directory. | [chezmoi config](https://www.chezmoi.io/reference/configuration-file/) |
 | `.chezmoiignore` | chezmoi ignore rules | Keeps repo-only files like this README and local hooks out of the applied home state. | [chezmoi ignore](https://www.chezmoi.io/reference/special-files/chezmoiignore/) |
 | `.githooks/` | repo hooks | Applies the source state after commits, merges, and checkouts in this repo. | [Git hooks](https://git-scm.com/docs/githooks) |
+| `Brewfile` | Homebrew bundle | Recreates the installed CLI/app/font package set with `brew bundle`. | [Homebrew Bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile) |
+| `scripts/bootstrap.sh` | setup entry point | Automates Homebrew, package install, chezmoi init/apply, and first-run plugin setup. | [Homebrew install](https://brew.sh/), [chezmoi init](https://www.chezmoi.io/reference/commands/init/) |
+
+## Homebrew packages
+
+`Brewfile` is the installable package snapshot. Reinstall everything from it
+with:
+
+```sh
+brew bundle --file "$HOME/dotfiles/Brewfile"
+```
+
+Current directly installed formulae captured from this machine:
+
+```text
+anomalyco/tap/opencode
+azure-cli
+bat
+block-goose-cli
+carapace
+chezmoi
+cloudflared
+cmake
+direnv
+eza
+fastfetch
+fd
+figlet
+fnm
+fzf
+gcc
+gemini-cli
+gh
+git
+git-delta
+glab
+glow
+go
+graphviz
+grep
+httpie
+ical-buddy
+jaq
+jless
+jmeter
+jq
+lazygit
+llmfit
+md5sha1sum
+neovim
+pastel
+pipx
+pnpm
+rtk
+rust
+sesh
+superfile
+television
+tldr
+tmux
+tree
+vite
+xh
+yarn
+zoxide
+```
+
+Current casks captured from this machine:
+
+```text
+aerospace
+android-platform-tools
+bitwarden
+bruno
+caffeine
+charles@4
+codex
+codexbar
+connectiq-sdk-manager
+font-fira-code-nerd-font
+font-jetbrains-mono-nerd-font
+gcloud-cli
+ghostty
+iina
+orbstack
+visual-studio-code
+wezterm
+```
+
+The Brewfile also records Go, Cargo, and npm global tools that Homebrew Bundle
+detected: `cclogviewer`, `zoekt-index`, `ast-grep`, `tree-sitter-cli`,
+`@openai/codex`, and `corepack`.
 
 ## Tooling choices
 
@@ -41,15 +153,20 @@ Keep those values machine-local or add them through a private/secrets flow.
   i3-like tiling workflow.
 - [OpenCode](https://opencode.ai/docs/) keeps CLI agent provider and model
   defaults in versioned config while loading the API key from the environment.
+- [Homebrew Bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile) turns the
+  installed package set into a repeatable `Brewfile`.
 
 ## Common commands
 
 ```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ranveersequeira/dotfiles/main/scripts/bootstrap.sh)"
+brew bundle --file "$HOME/dotfiles/Brewfile"
 chezmoi status
 chezmoi diff
 chezmoi apply
 chezmoi edit --apply ~/.tmux.conf
 chezmoi re-add ~/.tmux.conf
+brew bundle dump --file Brewfile --force
 ```
 
 The local Git hooks in `.githooks/` run `chezmoi apply --source "$HOME/dotfiles"`
