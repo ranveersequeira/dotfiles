@@ -127,7 +127,7 @@ brew "anomalyco/tap/opencode", trusted: true
 # Desktop-inspired terminal diff viewer for agent-authored changesets
 brew "modem-dev/tap/hunk", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace"
+cask "nikitabobko/tap/aerospace", trusted:true
 # Android SDK component
 cask "android-platform-tools"
 # Desktop password and login vault
