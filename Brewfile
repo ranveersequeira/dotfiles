@@ -90,8 +90,6 @@ brew "neovim"
 brew "pastel"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
-# Fast, disk space efficient package manager
-brew "pnpm"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # SVG rendering tool and library
@@ -120,8 +118,6 @@ brew "tree"
 brew "vite"
 # Friendly and fast tool for sending HTTP requests
 brew "xh"
-# JavaScript package manager
-brew "yarn"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
 # Shell extension to navigate your filesystem faster
@@ -163,15 +159,10 @@ cask "iina"
 cask "orbstack"
 # Visual database editor for Prisma projects
 cask "prisma-studio"
-# Open-source code editor
-cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 go "github.com/brads3290/cclogviewer/cmd/cclogviewer"
 go "github.com/sourcegraph/zoekt/cmd/zoekt-index"
 cargo "ast-grep"
 cargo "tree-sitter-cli"
-npm "@openai/codex"
-npm "@rama_nigg/open-cursor"
-npm "ai-agent-workflow"
 npm "corepack"
