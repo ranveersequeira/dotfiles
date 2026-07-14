@@ -190,6 +190,7 @@ alias gp="git pull"
 alias gpd="git pull origin development"
 alias gcb="git checkout"
 alias gnb="git checkout -b"
+alias gcm="git commit -m"
 
 # ------------------------------------------------------------
 # Git worktree
@@ -335,4 +336,26 @@ wtm() {
   tw
 }
 
+fkport() {
+  if [ -z "$1" ]; then
+    echo "Usage: fkport <port>"
+    return 1
+  fi
+
+  pids=$(lsof -tiTCP:"$1" -sTCP:LISTEN)
+
+  if [ -z "$pids" ]; then
+    echo "No process listening on port $1"
+    return 0
+  fi
+
+  echo "$pids" | xargs kill -9
+  echo "Killed process(es) on port $1: $pids"
+}
+
 alias w="wtm"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/ranveer.kumar/.local/bin:$PATH"
+export CODE_EDITOR="nvim"

@@ -37,6 +37,7 @@ DOTFILES_DIR="$HOME/src/dotfiles" /bin/bash -c "$(curl -fsSL https://raw.githubu
 | `dot_config/ghostty/config` | `~/.config/ghostty/config` | Ghostty terminal font, Gruvbox theme, macOS window behavior, keybinds, and terminal env. | [Ghostty](https://ghostty.org/docs/config) |
 | `dot_config/nvim/` | `~/.config/nvim/` | Neovim setup based on LazyVim, including plugin lockfiles and editor configuration. | [Neovim](https://neovim.io/doc/), [LazyVim](https://www.lazyvim.org/) |
 | `dot_config/opencode/opencode.jsonc` | `~/.config/opencode/opencode.jsonc` | OpenCode provider/model configuration, currently restricted to NVIDIA through `NVIDIA_API_KEY`. | [OpenCode config](https://opencode.ai/docs/config/), [OpenCode providers](https://opencode.ai/docs/providers/) |
+| `dot_config/television/config.toml` | `~/.config/television/config.toml` | Television UI, Gruvbox theme, keybindings, history, and shell channel preferences. | [Television configuration](https://alexpasmantier.github.io/television/user-guide/configuration/) |
 | `dot_aerospace.toml` | `~/.aerospace.toml` | AeroSpace tiling window manager layout, workspace, monitor, and movement bindings. | [AeroSpace](https://nikitabobko.github.io/AeroSpace/guide) |
 | `dot_config/tmux/scripts/` | `~/.config/tmux/scripts/` | Small tmux helper scripts, including calendar/status integration. | [tmux status line](https://man7.org/linux/man-pages/man1/tmux.1.html#STATUS_LINE) |
 | `.chezmoi.toml.tmpl` | chezmoi config template | Keeps chezmoi pointed at this source directory. | [chezmoi config](https://www.chezmoi.io/reference/configuration-file/) |
@@ -65,17 +66,20 @@ carapace
 chezmoi
 cloudflared
 cmake
+colima
 direnv
+docker
+docker-compose
 eza
 fastfetch
 fd
+ffmpeg-full
 figlet
 fnm
 fzf
 gcc
 gemini-cli
 gh
-git
 git-delta
 glab
 glow
@@ -84,20 +88,28 @@ graphviz
 grep
 httpie
 ical-buddy
+imagemagick-full
 jaq
 jless
 jmeter
 jq
 lazygit
 llmfit
+llvm
 md5sha1sum
+modem-dev/tap/hunk
 neovim
 pastel
 pipx
 pnpm
+poppler
+python@3.14
+resvg
+ripgrep
 rtk
 rust
 sesh
+sevenzip
 superfile
 television
 tldr
@@ -106,6 +118,7 @@ tree
 vite
 xh
 yarn
+yazi
 zoxide
 ```
 
@@ -115,6 +128,7 @@ Current casks captured from this machine:
 aerospace
 android-platform-tools
 bitwarden
+boring-notch
 bruno
 caffeine
 charles@4
@@ -123,17 +137,19 @@ codexbar
 connectiq-sdk-manager
 font-fira-code-nerd-font
 font-jetbrains-mono-nerd-font
+font-symbols-only-nerd-font
 gcloud-cli
 ghostty
 iina
 orbstack
+prisma-studio
 visual-studio-code
 wezterm
 ```
 
 The Brewfile also records Go, Cargo, and npm global tools that Homebrew Bundle
 detected: `cclogviewer`, `zoekt-index`, `ast-grep`, `tree-sitter-cli`,
-`@openai/codex`, and `corepack`.
+`@openai/codex`, `@rama_nigg/open-cursor`, `ai-agent-workflow`, and `corepack`.
 
 ## Tooling choices
 

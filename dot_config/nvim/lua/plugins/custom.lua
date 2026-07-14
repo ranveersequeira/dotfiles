@@ -17,6 +17,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.opt.shiftwidth = 2
     vim.opt.foldmethod = "indent"
     vim.opt.foldlevel = 80
+    vim.opt.conceallevel = 2
+    vim.opt.concealcursor = 'nc'
   end,
 })
 
@@ -103,7 +105,7 @@ return {
     end,
   },
 
-  { "stevearc/aerial.nvim", dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" } },
+  { "stevearc/aerial.nvim",  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" } },
 
   -- {
   --   "supermaven-inc/supermaven-nvim",
